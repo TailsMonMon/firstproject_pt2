@@ -158,78 +158,81 @@ namespace ConsoleApp1
             Console.WriteLine();
 
 
-            int[] numArray = { 1, 11, 15, 22 };
+            int[] numArray = { 1, 5, 7, 11, 15, 22 };
+            var result = Array.FindAll(numArray, GT10);     // To first fint all the numbers
+            Console.WriteLine("All: 10 < {0}", string.Join(" ", result));   // Joins all matching values
             Console.WriteLine("First: 10 < {0}", Array.Find(numArray, GT10));    // Returns the first matching value
-            //Console.WriteLine("All: 10 < {0}", Array.FindAll(numArray, GT10));    // Returns all matching value !NOT WORKING!
             Console.WriteLine("Index: 10 < x : {0}", Array.FindIndex(numArray, GT10));    // Returns an index of matching value
             Console.WriteLine();
 
 
                 // String builder
-            StringBuilder sb = new StringBuilder("Random Text");    //16 characters of space
-            StringBuilder sb2 = new StringBuilder("More random text", 256); //Foced to have bigger capacity
-            StringBuilder sb3 = new StringBuilder("Random Text that is longer than 16 characters.");    // When not forcing a bigger capacity, it automaticly gets bigger anyway.
-            Console.WriteLine("Capacity sb : {0}", sb.Capacity);
+            StringBuilder sb = new StringBuilder("Random Text");    // 16 characters of space
+            Console.WriteLine("Capacity sb : {0}", sb.Capacity);    
+            Console.WriteLine("Length sb   : {0}", sb.Length);      // Givess the amout of assigned characters.
+            Console.WriteLine();
+
+            StringBuilder sb2 = new StringBuilder("More random text", 256);     // Foced to have bigger capacity
             Console.WriteLine("Capacity sb2 : {0}", sb2.Capacity);
+            Console.WriteLine("Length sb2   : {0}", sb2.Length);
+            Console.WriteLine();
+
+            StringBuilder sb3 = new StringBuilder("Random Text that is longer than 16 characters.");    // When not forcing a bigger capacity, it automaticly gets bigger anyway.
             Console.WriteLine("Capacity sb3 : {0}", sb3.Capacity);
+            Console.WriteLine("Length sb3   : {0}", sb3.Length);
             Console.WriteLine();
-
-            //Givess the amout of assigned characters.
-            Console.WriteLine("Length sb : {0}", sb.Length); 
-            Console.WriteLine("Length sb2 : {0}", sb2.Length);
-            Console.WriteLine("Length sb3 : {0}", sb3.Length);
-            Console.WriteLine();
-
-            sb2.AppendLine("\nEven more random text");  // Writes the original string and then the new string below.
             
+            sb2.AppendLine("\nEven more random text under the original");  // Writes the original string and then the new string below.
+            Console.WriteLine();
+            
+
             CultureInfo svSE = CultureInfo.CreateSpecificCulture("sv-SE");
             string bestCustomer = "Flask-Janne Jansson";
             sb2.AppendFormat(svSE, "Bästa kunden : {0}", bestCustomer);     // append = Lägg till
             Console.WriteLine(sb2.ToString());  // StringBulder -> String
             Console.WriteLine();
 
-            sb2.Replace("text", "characters");
+            sb2.Replace("text", "characters");  // Replaces "text" with "characters".
             Console.WriteLine(sb2.ToString());
             Console.WriteLine();
 
             sb2.Clear();
-            Console.WriteLine(sb2.ToString());  // It's cleard!
+            Console.WriteLine(sb2.ToString());  // It's cleard! Therefore, it's blank.
             Console.WriteLine();
 
-            sb2.Append("Random Text");
-            Console.WriteLine("is \'{0}\' equal to \'{1}\'? : {2}. But why?", sb, sb2, sb.Equals(sb2)); //It's false. Why?
+            sb2.Append("This text");
+            Console.WriteLine("is \'{0}\' equal to \'{1}\'? : {2}.", sb, sb2, sb.Equals(sb2));     //It's false. Why?
             Console.WriteLine();
 
-            sb2.Insert(6, " !interruption!");
+            sb2.Insert(4, " !interruption!");
             Console.WriteLine(sb2.ToString());  // To insert text in a string
             Console.WriteLine();
 
             sb2.Remove(6, 15);
-            Console.WriteLine(sb2.ToString());  // It's back to normal
+            Console.WriteLine(sb2.ToString());   // It's back to normal
             Console.WriteLine();
 
 
                 //Casting (converting)
             long number1 = 1234;
-            int number2 = (int)number1;
+            int number2 = (int)number1;     // Converts the number from 64-bit to 32-bit. 'string -> number' does not work.
             Console.WriteLine("Original : {0}", number1.GetType());
             Console.WriteLine("Cast : {0}",  number2.GetType());
             Console.WriteLine();
 
 
             Console.ReadLine();
-
         }
 
         static void PrintArray(int[] intArray, string message)
         {
-            foreach(int k in intArray)
+            foreach(int number in intArray)
             {
-                Console.WriteLine("{0} : {1}", message, k);
+                Console.WriteLine("{0} : {1}", message, number);    // foreach layout
             }
         }
         
-        private static bool GT10(int val) // "Greater than 10"
+        private static bool GT10(int val)   // "Greater Than 10"
         {
             return val > 10;
         }
